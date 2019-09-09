@@ -11,11 +11,16 @@ import org.springframework.context.ApplicationContext;
 
 import com.app.model.Employee;
 import com.app.service.EmployeeService;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -52,10 +57,15 @@ public class Task3PdfCreationUsingItextpdfApplication {
 		
 			document.open();
 			
+
 			
 			//adding date
 			
 			document.add(new Paragraph(new Date().toString()));
+			
+			//setting the font size, font color and style
+			document.add(new Paragraph("Hello ITEXT PDF", FontFactory.getFont(FontFactory.TIMES_ROMAN,18,Font.BOLD,BaseColor.GREEN)));
+		   document.add(new Paragraph("--------------------------------------------------------------------------------------------------"));
 			//add paragraph
 			Paragraph para=new Paragraph("WELCOME TO ITEXT PDF CREATION LIBRARY");
 			
@@ -71,6 +81,14 @@ public class Task3PdfCreationUsingItextpdfApplication {
 			
 			table.setSpacingBefore(10f);
 			table.setSpacingAfter(10f);
+			
+			//setting title to the table + setting color and alignment of title
+			PdfPCell cell=new PdfPCell(new Paragraph("EMPLOYEE DETAILS"));
+			cell.setColspan(5);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setBackgroundColor(BaseColor.DARK_GRAY);
+			table.addCell(cell);
+			
 			table.addCell("ID");
 			table.addCell("NAME");
 			table.addCell("CITY");
@@ -141,6 +159,7 @@ public class Task3PdfCreationUsingItextpdfApplication {
 			document.addTitle("EMPLOYEE DETAILS");
 			
 			
+
 			document.close();
 		}
 		catch(DocumentException de) {
