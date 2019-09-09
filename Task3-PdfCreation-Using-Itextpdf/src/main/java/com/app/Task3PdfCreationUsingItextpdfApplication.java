@@ -19,6 +19,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -52,7 +53,9 @@ public class Task3PdfCreationUsingItextpdfApplication {
 		
 		try {
 		
-			document=new Document();
+			//document=new Document();
+			//setting page size of new document
+			document=new Document(PageSize.A4.rotate());
 			writer=PdfWriter.getInstance(document,new FileOutputStream("E:\\pdftest.pdf"));
 		
 			document.open();
@@ -132,8 +135,14 @@ public class Task3PdfCreationUsingItextpdfApplication {
 			
 			document.add(table);
 			
-			//adding images 
-			document.add(Image.getInstance("E:\\dimple.jpg"));
+			//adding images
+			Image img=Image.getInstance("E:\\dimple.jpg");
+		    //setting position of an image in doc
+			//img.setAbsolutePosition(480, 300);
+			//tilting image by specified degree
+			img.setRotationDegrees(45f);
+			document.add(img);
+		
 			
 			//adding ordered list
 			
