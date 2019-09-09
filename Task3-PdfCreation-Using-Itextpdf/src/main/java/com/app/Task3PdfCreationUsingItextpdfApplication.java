@@ -157,10 +157,10 @@ public class Task3PdfCreationUsingItextpdfApplication {
 			document.addAuthor("SANDIP HUMBE");
 			document.addLanguage("ENGLISH");
 			document.addTitle("EMPLOYEE DETAILS");
-			
-			
-
 			document.close();
+			
+			//merging two pdfs
+			service.mergePdfs();
 		}
 		catch(DocumentException de) {
 			de.printStackTrace();

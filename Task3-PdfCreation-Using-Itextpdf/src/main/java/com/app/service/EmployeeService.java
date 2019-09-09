@@ -13,4 +13,5 @@ public interface EmployeeService {
 	
 	public List<Employee> getAllEmployees();
 	
+	public void mergePdfs();
 }//interface
